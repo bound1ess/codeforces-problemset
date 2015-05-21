@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Arrays;
 
-public class _291a {
+public class a {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);

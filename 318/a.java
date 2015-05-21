@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.math.BigInteger;
 
-public class _318a {
+public class a {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);

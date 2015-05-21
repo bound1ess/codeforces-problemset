@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Vector;
 
-public class _75a {
+public class a {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);

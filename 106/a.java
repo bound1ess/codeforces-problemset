@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class _106a {
+public class a {
     private final static String quality = "6789TJQKA";
 
     public static void main(String[] args) {

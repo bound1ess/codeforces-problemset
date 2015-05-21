@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class _357a {
+public class a {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

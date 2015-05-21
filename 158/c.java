@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.Stack;
 import java.util.regex.*;
 
-public class _158c {
+public class c {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

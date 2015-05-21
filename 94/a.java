@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Vector;
 
-public class _94a {
+public class a {
     final static private int N = 10;
 
     public static void main(String[] args) {

@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class _540b {
+public class b {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

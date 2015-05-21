@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.PrintStream;
 import java.io.FileNotFoundException;
 
-public class _253a {
+public class a {
 
     public static void main(String[] args) throws FileNotFoundException {
         //Scanner sc = new Scanner(System.in);
