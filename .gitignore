@@ -1,5 +1,3 @@
-/*
-!/*.cpp
-!/*.java
-!/readme.md
-!/.gitignore
+/*/*
+!/*/*.java
+!/*/*.cpp
