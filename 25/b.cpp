@@ -14,38 +14,18 @@ int main()
     for (int i = 0; i < n; i++)
         scanf("%c", &num[i]);
 
-    //for (int i = 0; i < n; i++)
-    //    printf("%c", num[i]);
-    //printf("\n");
+    int i = 0;
 
-    int a = 0, b = 0, off = 0;
+    if (n % 2 > 0) {
+        printf("%c%c%c", num[0], num[1], num[2]);
+        i = 3;
+    }
 
-    while (n % 2 != 0)
-        b++, n -= 3;
-
-    a = n / 2;
-
-    for (int i = 0; a > 0 || b > 0; i++) {
+    for (; i < n; i += 2) {
         if (i > 0)
             printf("%c", '-');
 
-        int len;
-
-        if (i % 2 < 1)
-            if (a > 0)
-                a--, len = 2;
-            else
-                b--, len = 3;
-        else
-            if (b > 0)
-                b--, len = 3;
-            else
-                a--, len = 2;
-
-        for (int i = off; i < off + len; i++)
-            printf("%c", num[i]);
-
-        off += len;
+        printf("%c%c", num[i], num[i + 1]);
     }
 
     printf("\n");
