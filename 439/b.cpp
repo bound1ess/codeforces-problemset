@@ -27,7 +27,7 @@ int main() {
     }
   }
 
-  cout << answer << endl;  
+  cout << answer << endl;
   return 0;
 }
 
