@@ -1,28 +1,20 @@
-#include <iostream>
+#include <cstdio>
 
-using namespace std;
+int main() {
+  int n, m, f = 0, ans = 0;
+  scanf("%d", &n);
 
-int main()
-{
-    int n, f = 0;
-    cin >> n;
+  for (int i = 0; i < n; ++i) {
+    scanf("%d", &m);
+    f += m;
+  }
 
-    for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-
-        f += tmp;
+  for (int i = 1; i <= 5; ++i) {
+    if ((f + i) % (n + 1) != 1) {
+      ++ans;
     }
+  }
 
-    int ans = 0;
-
-    for (int i = 1; i <= 5; i++) {
-        if ((f + i) % (n + 1) != 1) {
-            ans++;
-        }
-    }
-
-    cout << ans << endl;
-
-    return 0;
+  printf("%d\n", ans);
+  return 0;
 }

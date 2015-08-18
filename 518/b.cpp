@@ -1,77 +1,56 @@
 #include <iostream>
 #include <string>
-#include <algorithm>
 
 using namespace std;
 
-int const N = 26;
-int s_chars[N * 2], t_chars[N * 2];
+const int N = 26, M = 52;
+int sc[M], tc[M];
 
-int get_index(const char& chr)
-{
-    return chr >= 'a' ? (chr - 'a') + N : (chr - 'A');
+inline int get(char c) {
+  return c >= 'a' ? c - 'a' + N : c - 'A';
 }
 
-int main()
-{
-    string s, t;
-    cin >> s >> t;
+inline int min(int x, int y) {
+  return x < y ? x : y;
+}
 
-    for (int i = 0; i < (int)s.size(); i++) {
-        s_chars[get_index(s[i])]++;
+int main() {
+  string s, t;
+  int a = 0, b = 0;
+  cin >> s >> t;
+
+  for (int i = 0, n = s.length(); i < n; ++i) {
+    ++sc[get(s[i])];
+  }
+
+  for (int i = 0, n = t.length(); i < n; ++i) {
+    ++tc[get(t[i])];
+  }
+
+  for (int i = 0; i < M; ++i) {
+    int val = min(sc[i], tc[i]);
+
+    if (val > 0) {
+      sc[i] -= val, tc[i] -= val, a += val;
     }
+  }
 
-    for (int i = 0; i < (int)t.size(); i++) {
-        t_chars[get_index(t[i])]++;
+  for (int i = 0; i < N; ++i) {
+    int val = min(sc[i], tc[i + N]);
+
+    if (val > 0) {
+      sc[i] -= val, tc[i + N] -= val, b += val;
     }
+  }
 
-    int a = 0, b = 0;
+  for (int i = N; i < M; ++i) {
+    int val = min(sc[i], tc[i - N]);
 
-    for (int i = 0; i < N * 2; i++) {
-        int val = min(s_chars[i], t_chars[i]);
-
-        if (val < 1) {
-            continue;
-        }
-
-        s_chars[i] -= val;
-        t_chars[i] -= val;
-
-        a += val;
+    if (val > 0) {
+      sc[i] -= val, tc[i - N] -= val, b += val;
     }
+  }
 
-    //for (int i = 0; i < N; i++)
-    //    cout << (char)(i + 65) << ": " << chars[i] << endl;
-    //for (int i = 0; i < N; i++)
-    //    cout << (char)(i + 97) << ": " << chars[i + N] << endl;
-
-    for (int i = 0; i < N; i++) {
-        int val = min(s_chars[i], t_chars[i + N]);
-
-        if (val < 1) {
-            continue;
-        }
-
-        s_chars[i] -= val;
-        t_chars[i + N] -= val;
-
-        b += val;
-    }
-
-    for (int i = N; i < 2 * N; i++) {
-        int val = min(s_chars[i], t_chars[i - N]);
-
-        if (val < 1) {
-            continue;
-        }
-
-        s_chars[i] -= val;
-        t_chars[i - N] -= val;
-
-        b += val;
-    }
-
-    cout << a << " " << b << endl;
-
-    return 0;
+  cout << a << " " << b << endl;
+  return 0;
 }
