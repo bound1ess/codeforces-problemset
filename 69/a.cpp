@@ -1,22 +1,27 @@
-#include <iostream>
+#include <cstdio>
 
-using namespace std;
+const int N = 3;
+int force[N];
 
-int force[3] = {0, 0, 0};
+int main() {
+  int n;
+  scanf("%d", &n);
 
-int main()
-{
-    int n;
-    cin >> n;
+  for (int i = 0; i < n * N; ++i) {
+    int m;
+    scanf("%d", &m);
+    force[i % 3] += m;
+  }
 
-    for (int i = 0; i < n * 3; i++) {
-        int value;
-        cin >> value;
+  bool ok = true;
 
-        force[i % 3] += value;
+  for (int i = 0; i < N; ++i) {
+    if (force[i]) {
+      ok = false;
+      break;
     }
+  }
 
-    cout << ((force[0] || force[1] || force[2]) ? "NO" : "YES") << endl;
-
-    return 0;
+  printf(ok ? "YES\n" : "NO\n");
+  return 0;
 }

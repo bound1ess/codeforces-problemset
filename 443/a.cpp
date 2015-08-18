@@ -3,35 +3,25 @@
 
 using namespace std;
 
-int chars[26] = {0};
+const int N = 26;
+bool chars[N];
 
-int main()
-{
-    string str;
-    cin >> str;
-
-    while (str[str.size() - 1] != '}') {
-        string substr;
-        cin >> substr;
-
-        str += substr;
+int main() {
+  string s;
+  getline(cin, s);
+  for (int i = 1, n = s.length(); i < n - 1; ++i) {
+    if (s[i] != ',') {
+      chars[s[i] - 'a'] = true;
+    } else {
+      ++i;
     }
-
-    for (int i = 1; i < (int)str.size() - 1; i++) {
-        if (str[i] != ',') {
-            chars[str[i] - 'a']++;
-        }
+  }
+  int ans = 0;
+  for (int i = 0; i < N; ++i) {
+    if (chars[i]) {
+      ++ans;
     }
-
-    int cnt = 0;
-
-    for (int i = 0; i < 26; i++) {
-        if (chars[i] > 0) {
-            cnt++;
-        }
-    }
-
-    cout << cnt << endl;
-
-    return 0;
+  }
+  cout << ans << endl;
+  return 0;
 }
