@@ -1,43 +1,30 @@
-#include <iostream>
+#include <cstdio>
+#include <utility>
 #include <queue>
 
 using namespace std;
 
-typedef pair<int, int> ipair;
+int main() {
+  int n, m, k, sum = 0, id = -1;
+  scanf("%d%d", &n, &m);
+  queue< pair<int, int> > q;
 
-int main()
-{
-    int n, m;
-    cin >> n >> m;
+  for (int i = 0; i < n; ++i) {
+    scanf("%d", &k);
+    sum += k;
+    q.push(make_pair(i + 1, k));
+  }
 
-    queue<ipair> q;
+  while ( ! q.empty()) {
+    pair<int, int> kid = q.front();
+    id = kid.first;
+    q.pop();
 
-    int sum = 0;
-
-    for (int i = 0; i < n; i++) {
-        int tmp;
-        cin >> tmp;
-
-        sum += tmp;
-
-        q.push(make_pair(i + 1, tmp));
+    if (kid.second > 0) {
+      q.push(make_pair(kid.first, kid.second - m));
     }
+  }
 
-    int id = -1;
-
-    while ( ! q.empty()) {
-        ipair kid = q.front();
-        q.pop();
-        //cout << kid.second << endl;
-
-        if (kid.second > 0) {
-            q.push(make_pair(kid.first, kid.second - m));
-        }
-
-        id = kid.first;
-    }
-
-    cout << id << endl;
-
-    return 0;
+  printf("%d\n", id);
+  return 0;
 }
