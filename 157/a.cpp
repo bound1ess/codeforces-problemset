@@ -1,40 +1,29 @@
-#include <iostream>
-#include <vector>
+#include <cstdio>
 
-using namespace std;
+const int N = 30;
+int a[N][N], row[N], col[N];
 
-int main()
-{
-    vector<vector<int> > map;
+int main() {
+  int n; scanf("%d", &n);
 
-    int n;
-    cin >> n;
-
-    vector<int> v_sum(n, 0), h_sum(n, 0);
-
-    for (int i = 0; i < n; i++) {
-        vector<int> row(n);
-
-        for (int j = 0; j < n; j++) {
-            cin >> row[j];
-            v_sum[j] += row[j];
-            h_sum[i] += row[j];
-        }
-
-        map.push_back(row);
+  for (int i = 0; i < n; ++i) {
+    for (int j = 0; j < n; ++j) {
+      scanf("%d", a[i] + j);
+      col[j] += a[i][j];
+      row[i] += a[i][j];
     }
+  }
 
-    int ans = 0;
+  int ans = 0;
 
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            if (v_sum[j] > h_sum[i]) {
-                ans++;
-            }
-        }
+  for (int i = 0; i < n; ++i) {
+    for (int j = 0; j < n; ++j) {
+      if (col[j] > row[i]) {
+        ++ans;
+      }
     }
+  }
 
-    cout << ans << endl;
-
-    return 0;
+  printf("%d\n", ans);
+  return 0;
 }

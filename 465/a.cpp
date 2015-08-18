@@ -3,26 +3,18 @@
 
 using namespace std;
 
-int main()
-{
-    int n;
-    cin >> n;
-
-    string str;
-    cin >> str;
-
-    int b = 1, ans = 0;
-
-    for (int i = 0; i < n; i++) {
-        if (b == 1) {
-            b = (int)(str[i] == '1');
-            ans++;
-        } else {
-            break;
-        }
+int main() {
+  int n, ans = 0;
+  string s;
+  cin >> n >> s;
+  bool ok = true;
+  for (int i = 0; i < n; ++i) {
+    if ( ! ok) {
+      break;
     }
-
-    cout << ans << endl;
-
-    return 0;
+    ++ans;
+    ok = s[i] == '1';
+  }
+  cout << ans << endl;
+  return 0;
 }
