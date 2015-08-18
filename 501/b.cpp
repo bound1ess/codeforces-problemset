@@ -1,42 +1,37 @@
 #include <iostream>
+#include <utility>
 #include <string>
 #include <map>
 
 using namespace std;
 
-int main()
-{
-    int q;
-    cin >> q;
+int main() {
+  int n;
+  map<string, string> m;
+  string a, b;
+  cin >> n;
 
-    map<string, string> m;
+  for (int i = 0; i < n; ++i) {
+    bool found = false;
+    cin >> a >> b;
 
-    for (int i = 0; i < q; i++) {
-        string a, b;
-        cin >> a >> b;
-
-        bool found = false;
-
-        for (auto it = m.begin(); it != m.end(); it++) {
-            //cout << "call" << endl;
-            if (it->second == a) {
-                it->second = b;
-                found = true;
-
-                break;
-            }
-        }
-
-        if ( ! found) {
-            //cout << "Inserting " << a << " as " << b << endl;
-            m[a] = b;
-        }
+    for (pair<string, string> user: m) {
+      if (user.second == a) {
+        //user.second = b;
+        m[user.first] = b;
+        found = true;
+        break;
+      }
     }
 
-    cout << m.size() << endl;
+    if ( ! found) {
+      m[a] = b;
+    }
+  }
 
-    for (auto it = m.begin(); it != m.end(); it++)
-        cout << it->first << " " << it->second << endl;
+  cout << m.size() << endl;
 
-    return 0;
+  for (pair<string, string> user: m) {
+    cout << user.first << " " << user.second << endl;
+  }
 }

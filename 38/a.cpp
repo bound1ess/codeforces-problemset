@@ -1,25 +1,22 @@
-#include <iostream>
+#include <cstdio>
 
-using namespace std;
+const int N = 100;
+int d[N];
 
-int d[101];
+int main() {
+  int n, a, b;
+  scanf("%d", &n);
 
-int main()
-{
-    int n;
-    cin >> n;
+  for (int i = 0; i < n - 1; ++i) {
+    scanf("%d", d + i);
 
-    for (int i = 1; i <= n - 1; i++) {
-        cin >> d[i];
-
-        if (i > 1)
-            d[i] += d[i - 1];
+    if (i > 0) {
+      d[i] += d[i - 1];
     }
+  }
 
-    int a, b;
-    cin >> a >> b;
+  scanf("%d%d", &a, &b);
 
-    cout << (d[b - 1] - d[a - 1]) << endl;
-
-    return 0;
+  printf("%d\n", d[b - 2] - d[a - 2]);
+  return 0;
 }
