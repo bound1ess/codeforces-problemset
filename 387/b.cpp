@@ -1,48 +1,41 @@
 #include <cstdio>
 
-using namespace std;
-
-const int N = (int) 10e5;
+const int N = 100000;
 int a[N], b[N];
 bool c[N];
 
-int main()
-{
-    int n, m;
+int main() {
+  int n, m, ans = 0;
+  scanf("%d%d", &n, &m);
 
-    scanf("%u %u", &n, &m);
+  for (int i = 0; i < n; ++i) {
+    scanf("%d", a + i);
+  }
 
-    for (int i = 0; i < n; i++)
-        scanf("%u", &a[i]);
+  for (int i = 0; i < m; ++i) {
+    scanf("%d", b + i);
+  }
 
-    for (int i = 0; i < m; i++)
-        scanf("%u", &b[i]);
+  for (int i = 0; i < n; ++i) {
+    bool make = true;
 
-    int ans = 0;
+    for (int j = 0; j < m; ++j) {
+      if (c[j]) {
+        continue;
+      }
 
-    for (int i = 0; i < n; i++) {
-        bool make_new = true;
-
-        for (int j = 0; j < m; j++) {
-            //printf("c[%u] = %u;\n", j, c[j]);
-
-            if (c[j])
-                continue;
-
-            if (b[j] >= a[i]) {
-                c[j] = true;
-                make_new = false;
-                break;
-            }
-        }
-
-        if (make_new) {
-            //printf("task with difficulty %u\n", a[i]);
-            ans++;
-        }
+      if (b[j] >= a[i]) {
+        c[j] = true;
+        make = false;
+        break;
+      }
     }
 
-    printf("%u\n", ans);
+    if (make) {
+      ++ans;
+    }
+  }
 
-    return 0;
+  printf("%d\n", ans);
+  return 0;
 }

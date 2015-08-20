@@ -1,34 +1,32 @@
-#include <cstdio>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
-char num[100], tmp;
+const int N = 100;
+char num[N];
 
-int main()
-{
-    int n;
-    scanf("%u", &n);
+int main() {
+  int n, i = 0;
+  string code;
+  cin >> n >> code;
 
-    scanf("%c", &tmp);
+  if (n % 2 > 0) {
+    i = 3;
 
-    for (int i = 0; i < n; i++)
-        scanf("%c", &num[i]);
+    for (int j = 0; j < i; ++j) {
+      cout << code[j];
+    }
+  }
 
-    int i = 0;
-
-    if (n % 2 > 0) {
-        printf("%c%c%c", num[0], num[1], num[2]);
-        i = 3;
+  for (int j = i; j < n; j += 2) {
+    if (j > 0) {
+      cout << '-';
     }
 
-    for (; i < n; i += 2) {
-        if (i > 0)
-            printf("%c", '-');
+    cout << code[j] << code[j + 1];
+  }
 
-        printf("%c%c", num[i], num[i + 1]);
-    }
-
-    printf("\n");
-
-    return 0;
+  cout << endl;
+  return 0;
 }

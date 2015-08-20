@@ -1,22 +1,22 @@
-#include <cstdio>
 #include <algorithm>
 #include <functional>
+#include <cstdio>
 
 using namespace std;
 
-int a[100];
+const int N = 100;
+int a[N];
 
-int main()
-{
-    int n, k;
-    scanf("%u %u", &n, &k);
+int main() {
+  int n, k;
+  scanf("%d%d", &n, &k);
 
-    for (int i = 0; i < n; i++)
-        scanf("%u", &a[i]);
+  for (int i = 0; i < n; ++i) {
+    scanf("%d", a + i);
+  }
 
-    sort(a, a + n, greater<int>());
+  sort(a, a + n, greater<int>());
 
-    printf("%u\n", a[k - 1]);
-
-    return 0;
+  printf("%d\n", a[k - 1]);
+  return 0;
 }

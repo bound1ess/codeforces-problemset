@@ -4,39 +4,37 @@
 
 using namespace std;
 
-string map[50];
+const int N = 50;
+string map[N];
 
-int main()
-{
-    int n, m;
-    cin >> n >> m;
+int main() {
+  int n, m;
+  cin >> n >> m;
 
-    for (int i = 0; i < n; i++)
-        cin >> map[i];
+  for (int i = 0; i < n; ++i) {
+    cin >> map[i];
+  }
 
-    int l = m - 1, r = 0;
-    int u = n - 1, d = 0;
+  int l = m - 1, u = n - 1, r = 0, d = 0;
 
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            if (map[i][j] == '.')
-                continue;
+  for (int i = 0; i < n; ++i) {
+    for (int j = 0; j < m; ++j) {
+      if (map[i][j] == '.') {
+        continue;
+      }
 
-            u = min(u, i);
-            d = max(d, i);
+      u = min(u, i), d = max(d, i);
+      l = min(l, j), r = max(r, j);
+    }
+  }
 
-            l = min(l, j);
-            r = max(r, j);
-        }
+  for (int i = u; i <= d; ++i) {
+    for (int j = l; j <= r; ++j) {
+      cout << map[i][j];
     }
 
-    for (int i = u; i <= d; i++) {
-        for (int j = l; j <= r; j++) {
-            cout << map[i][j];
-        }
+    cout << endl;
+  }
 
-        cout << endl;
-    }
-
-    return 0;
+  return 0;
 }
