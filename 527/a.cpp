@@ -1,20 +1,18 @@
 #include <iostream>
-#include <utility>
+#include <algorithm>
 
 using namespace std;
 
 int main() {
-    long long ans = 0, a, b;
-    cin >> a >> b;
+  long long ans = 0LL, a, b;
+  cin >> a >> b;
 
-    while (b > 0) {
-        ans += a / b;
-        a %= b;
+  while (b > 0LL) {
+    ans += a / b;
+    a %= b;
+    swap(a, b);
+  }
 
-        swap(a, b);
-    }
-
-    cout << ans << endl;
-
-    return 0;
+  cout << ans << endl;
+  return 0;
 }
