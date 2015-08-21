@@ -3,31 +3,32 @@
 
 using namespace std;
 
-int main()
-{
-    string path; cin >> path;
+int main() {
+  string s;
+  int buf = 0, ans = 0;
+  cin >> s;
 
-    int buf = 0, ans = 0, len = path.length();
-
-    for (int i = 0; i < len; i++) {
-        if (i < 1) {
-            buf++;
-        } else if (path[i] == path[i - 1]) {
-            buf++;
-
-            if (buf > 5) {
-                ans++, buf = 1;
-            }
-        } else {
-            buf = 1, ans++;
-        }
+  for (int i = 0, n = s.length(); i < n; ++i) {
+    if (i == 0) {
+      ++buf;
+      continue;
     }
 
-    if (buf > 0) {
-        ans++;
+    if (s[i] == s[i - 1]) {
+      ++buf;
+
+      if (buf > 5) {
+        ++ans, buf = 1;
+      }
+    } else {
+      ++ans, buf = 1;
     }
+  }
 
-    cout << ans << endl;
+  if (buf > 0) {
+    ++ans;
+  }
 
-    return 0;
+  cout << ans << endl;
+  return 0;
 }

@@ -31,5 +31,6 @@ int main() {
   }
 
   printf("Yes\n");
+  delete [] arr;
   return 0;
 }

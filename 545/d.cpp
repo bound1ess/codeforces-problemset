@@ -1,12 +1,10 @@
 #include <cstdio>
 #include <algorithm>
 
-using std::swap;
+using namespace std;
 
-const int N = (int) 1e5;
+const int N = 100000;
 int arr[N];
-
-void quicksort(int l, int r);
 
 int main() {
   int n;
@@ -16,7 +14,7 @@ int main() {
     scanf("%d", arr + i);
   }
 
-  quicksort(0, n - 1);
+  sort(arr, arr + n);
   int ans = 0;
   long long sum = 0LL;
 
@@ -29,32 +27,4 @@ int main() {
 
   printf("%d\n", ans);
   return 0;
-}
-
-void quicksort(int l, int r) {
-  int i = l, j = r;
-  int pivot = arr[(l + r) >> 1];
-
-  while (i <= j) {
-    while (arr[i] < pivot) {
-      ++i;
-    }
-
-    while (arr[j] > pivot) {
-      --j;
-    }
-
-    if (i <= j) {
-      swap(arr[i], arr[j]);
-      ++i, --j;
-    }
-  }
-
-  if (l < j) {
-    quicksort(l, j);
-  }
-
-  if (i < r) {
-    quicksort(i, r);
-  }
 }
