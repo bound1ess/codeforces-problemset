@@ -1,26 +1,22 @@
 #include <iostream>
 #include <string>
 
-int main()
-{
-    std::string banner, word = "CODEFORCES";
-    std::cin >> banner;
+using namespace std;
 
-    int banner_length = banner.length(), word_length = word.length();
-    int left = 0, right = 0;
+int main() {
+  string banner, word = "CODEFORCES";
+  int left = 0, right = 0, word_len = word.length(), banner_len;
+  cin >> banner;
+  banner_len = banner.length();
 
-    // left => right
-    while (banner[left] == word[left]) {
-        left++;
-    }
+  while (banner[left] == word[left]) {
+    ++left;
+  }
 
-    // left <= right
-    while (banner[banner_length - 1 - right] == word[word_length - 1 - right]) {
-        right++;
-    }
+  while (banner[banner_len - 1 - right] == word[word_len - 1 - right]) {
+    ++right;
+  }
 
-    // if left + right >= word, then such substring exists
-    std::cout << ((left + right >= word_length) ? "YES\n" : "NO\n");
-
-    return 0;
+  cout << (left + right >= word_len ? "YES" : "NO") << endl; 
+  return 0;
 }

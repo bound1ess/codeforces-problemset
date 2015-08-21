@@ -1,41 +1,34 @@
 #include <iostream>
 #include <string>
-#include <unordered_map>
+#include <map>
 
 using namespace std;
 
-int main()
-{
-    int n, m;
-    cin >> n >> m;
+int main() {
+  int n, m;
+  string a, b, answer;
+  map<string, string> w;
+  cin >> n >> m;
 
-    unordered_map<string, string> words;
+  for (int i = 0; i < m; ++i) {
+    cin >> a >> b;
+    w[a] = b;
+  }
 
-    for (int i = 0; i < m; i++) {
-        string a, b;
-        cin >> a >> b;
+  for (int i = 0; i < n; ++i) {
+    cin >> a;
 
-        words[a] = b;
+    if (w[a].length() >= a.length()) {
+      answer += a;
+    } else {
+      answer += w[a];
     }
 
-    string answer;
-
-    for (int i = 0; i < n; i++) {
-        string word;
-        cin >> word;
-
-        if (words[word].length() >= word.length()) {
-            answer += word;
-        } else {
-            answer += words[word];
-        }
-
-        if (i + 1 < n) {
-            answer += " ";
-        }
+    if (i + 1 < n) {
+      answer += " ";
     }
+  }
 
-    cout << answer << endl;
-
-    return 0;
+  cout << answer << endl;
+  return 0;
 }

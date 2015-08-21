@@ -1,40 +1,33 @@
 #include <cstdio>
-#include <vector>
-#include <utility>
-#include <algorithm>
-#include <functional>
 
-using namespace std;
+const int N = 200001;
+int w[N], h[N];
 
-int main()
-{
-    int n, sum = 0;
-    scanf("%d", &n);
+int main() {
+  int n, w_sum = 0, max_h1 = N, max_h2;
+  scanf("%d", &n);
 
-    vector<pair<int, int> > a;
-    vector<int> b;
+  for (int i = 0; i < n; ++i) {
+    scanf("%d%d", w + i, h + i);
+    w_sum += w[i];
 
-    for (int i = 0; i < n; i++) {
-        int w, h;
-        scanf("%d %d", &w, &h);
-        //printf("w: %d, h: %d\n", w, h);
-        a.push_back(make_pair(w, h));
-        b.push_back(h);
+    if (h[max_h1] < h[i]) {
+      max_h2 = max_h1;
+      max_h1 = i;
+    } else if (h[max_h2] < h[i]) {
+      max_h2 = i;
+    }
+  }
 
-        sum += w;
+  for (int i = 0; i < n; ++i) {
+    if (h[max_h1] == h[i]) {
+      printf("%d", (w_sum - w[i]) * h[max_h2]);
+    } else {
+      printf("%d", (w_sum - w[i]) * h[max_h1]);
     }
 
-    //for (int i = 0; i < n; i++) printf("w: %d, h: %d\n", a[i].first, a[i].second);
-    sort(b.begin(), b.end(), greater<int>());
+    printf(i + 1 < n ? " " : "\n");
+  }
 
-    //printf("sum: %d\n", sum);
-    for (int i = 0; i < n; i++) {
-        //printf("max height: %d\n", max(left_max_h, right_max_h));
-        //printf("width sum: %d\n", sum - a[i].first);
-        printf("%d ", (a[i].second == b[0] ? b[1] : b[0]) * (sum - a[i].first));
-    }
-
-    printf("\n");
-
-    return 0;
+  return 0;
 }

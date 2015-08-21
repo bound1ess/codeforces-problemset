@@ -1,23 +1,21 @@
 #include <cstdio>
 
-int a[7];
+const int N = 7;
+int a[N];
 
-int main()
-{
-    int n;
-    scanf("%d", &n);
+int main() {
+  int n, ans = 0;
+  scanf("%d", &n);
 
-    for (int i = 0; i < 7; i++) {
-        scanf("%d", &a[i]);
-    }
+  for (int i = 0; i < N; ++i) {
+    scanf("%d", a + i);
+  }
 
-    int ans = 0;
+  while (n > 0) {
+    n -= a[ans % N];
+    ++ans;
+  }
 
-    while (n > 0) {
-        n -= a[ans % 7];
-        ans++;
-    }
-
-    //printf("days: %d\n", ans);
-    printf("%d\n", (ans % 7 == 0) ? 7 : (ans % 7));
+  printf("%d\n", ans % N == 0 ? N : (ans % N));
+  return 0;
 }
