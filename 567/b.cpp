@@ -10,7 +10,8 @@ int main() {
   cin >> n;
 
   for (int i = 0; i < n; ++i) {
-    char act; int id;
+    int id;
+    char act;
     cin >> act >> id;
 
     if (act == '+') {

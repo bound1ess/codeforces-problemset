@@ -1,23 +1,21 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
-const int N = (int) 1e5;
+const int N = 100000;
 int arr[N];
-
-void quicksort(int l, int r);
 
 int main() {
   int n, x;
-  cin >> n >> x;
-
   long long answer = 0LL;
+  cin >> n >> x;
 
   for (int i = 0; i < n; ++i) {
     cin >> arr[i];
   }
 
-  quicksort(0, n - 1);
+  sort(arr, arr + n);
 
   for (int i = 0; i < n; ++i) {
     answer += (long long) x * arr[i];
@@ -29,34 +27,4 @@ int main() {
 
   cout << answer << endl;
   return 0;
-}
-
-void quicksort(int l, int r) {
-  int i = l, j = r;
-  int pivot = arr[(l + r) >> 1];
-
-  while (i <= j) {
-    while (arr[i] < pivot) {
-      ++i;
-    }
-
-    while (arr[j] > pivot) {
-      --j;
-    }
-
-    if (i <= j) {
-      int tmp = arr[i];
-      arr[i] = arr[j];
-      arr[j] = tmp;
-      ++i, --j;
-    }
-  }
-
-  if (i < r) {
-    quicksort(i, r);
-  }
-
-  if (l < j) {
-    quicksort(l, j);
-  }
 }

@@ -9,6 +9,7 @@ inline void restore(string &s) {
       s[i] = s[j];
       break;
     }
+
     if (s[j] == '?') {
       s[j] = s[i];
       break;
@@ -22,11 +23,13 @@ inline bool is_palindrome(string &s) {
       return false;
     }
   }
+
   return true;
 }
 
 int main() {
   string s; cin >> s;
+
   for (int i = 0, n = s.length(); i <= n; ++i) {
     string copy = s;
     copy.insert(i, 1, '?');
@@ -37,6 +40,7 @@ int main() {
       return 0;
     }
   }
+
   cout << "NA" << endl;
   return 0;
 }
