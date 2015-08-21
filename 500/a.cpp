@@ -1,21 +1,22 @@
 #include <cstdio>
 
-int a[30000];
+const int N = 30000;
+int a[N];
 
-int main()
-{
-    int n, t;
-    scanf("%d %d", &n, &t);
+int main() {
+  int n, t;
+  scanf("%d%d", &n, &t);
 
-    for (int i = 0; i < n - 1; i++) {
-        scanf("%d", &a[i]);
-    }
+  for (int i = 0; i < n - 1; ++i) {
+    scanf("%d", a + i);
+  }
 
-    int i;
+  int ans = 1;
 
-    for (i = 1; i < t; i += a[i - 1]) {}
+  while (ans < t) {
+    ans += a[ans - 1];
+  }
 
-    printf(i <= t ? "YES\n" : "NO\n");
-
-    return 0;
+  printf(ans <= t ? "YES\n" : "NO\n");
+  return 0;
 }

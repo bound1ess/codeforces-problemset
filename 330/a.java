@@ -1,70 +1,66 @@
 import java.util.Scanner;
 
 public class a {
+  private enum CellState {EVIL, FREE, EATEN}
 
-    private enum CellState {
-        EVIL, FREE, EATEN
+  public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int n = in.nextInt(), m = in.nextInt();
+    CellState[][] cake = new CellState[n][m];
+
+    for (int i = 0; i < n; ++i) {
+      String row = in.next();
+
+      for (int j = 0; j < m; ++j) {
+        cake[i][j] = row.charAt(j) == 'S' ? CellState.EVIL : CellState.FREE;
+      }
     }
 
-    public static void main(final String[] arguments) {
-        final Scanner input = new Scanner(System.in);
-        final int n = input.nextInt(), m = input.nextInt();
-        CellState[][] cake = new CellState[n][m];
+    in.close();
+    int cellsToEat = 0;
 
-        for (int i = 0; i < n; i++) {
-            String row = input.next();
+    for (int i = 0; i < n; ++i) {
+      int freeCells = 0;
 
-            for (int j = 0; j < m; j++) {
-                cake[i][j] = row.charAt(j) == 'S' ? CellState.EVIL : CellState.FREE;
-            }
+      for (int j = 0; j < m; ++j) {
+        if (cake[i][j] == CellState.EVIL) {
+          freeCells = 0;
+          break;
         }
 
-        input.close();
-
-        int cellsToEat = 0;
-
-        // from left to right
-        for (int i = 0; i < n; i++) {
-            int freeCells = 0;
-
-            for (int j = 0; j < m; j++) {
-                if (cake[i][j] == CellState.EVIL) {
-                    freeCells = 0;
-                    break;
-                } else if (cake[i][j] == CellState.FREE) {
-                    freeCells++;
-                    //cake[i][j] = CellState.EATEN;
-                }
-            }
-
-            if (freeCells > 0) {
-                for (int j = 0; j < m; j++) {
-                    if (cake[i][j] == CellState.FREE) {
-                        cake[i][j] = CellState.EATEN;
-                    }
-                }
-            }
-
-            cellsToEat += freeCells;
+        if (cake[i][j] == CellState.FREE) {
+          ++freeCells;
         }
+      }
 
-        // from top to bottom
-        for (int j = 0; j < m; j++) {
-            int freeCells = 0;
-
-            for (int i = 0; i < n; i++) {
-                if (cake[i][j] == CellState.EVIL) {
-                    freeCells = 0;
-                    break;
-                } else if (cake[i][j] == CellState.FREE) {
-                    freeCells++;
-                    //cake[i][j] = CellState.EATEN;
-                }
-            }
-
-            cellsToEat += freeCells;
+      if (freeCells > 0) {
+        for (int j = 0; j < m; ++j) {
+          if (cake[i][j] == CellState.FREE) {
+            cake[i][j] = CellState.EATEN;
+          }
         }
+      }
 
-        System.out.println(cellsToEat);
+      cellsToEat += freeCells;
     }
+
+    for (int j = 0; j < m; ++j) {
+      int freeCells = 0;
+
+      for (int i = 0; i < n; ++i) {
+        if (cake[i][j] == CellState.EVIL) {
+          freeCells = 0;
+          break;
+        }
+
+        if (cake[i][j] == CellState.FREE) {
+          ++freeCells;
+        }
+      }
+
+      cellsToEat += freeCells;
+    }
+
+    System.out.println(cellsToEat);
+  }
 }
