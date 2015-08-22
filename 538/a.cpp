@@ -17,6 +17,6 @@ int main() {
     ++right;
   }
 
-  cout << (left + right >= word_len ? "YES" : "NO") << endl; 
+  cout << (left + right >= word_len ? "YES" : "NO") << endl;
   return 0;
 }
