@@ -3,26 +3,25 @@
 
 using namespace std;
 
-int main()
-{
-    long long n, m, k;
-    cin >> n >> m >> k;
+int main() {
+  long long n, m, k;
+  cin >> n >> m >> k;
+  long long l = 1LL, r = (n * m) + 1LL;
 
-    long long l = 1, r = (n * m) + 1;
+  while (l < r) {
+    long long mid = (l + r) / 2LL, sum = 0LL;
 
-    while (l < r) {
-        long long mid = (l + r) / 2, sum = 0;
-
-        for (long long i = 1; i <= n; i++)
-            sum += min(m, (mid - 1) / i);
-
-        if (sum < k)
-            l = mid + 1;
-        else
-            r = mid;
+    for (long long i = 1LL; i <= n; ++i) {
+      sum += min(m, (mid - 1LL) / i);
     }
 
-    cout << (l - 1) << endl;
+    if (sum < k) {
+      l = mid + 1LL;
+    } else {
+      r = mid;
+    }
+  }
 
-    return 0;
+  cout << (l - 1LL) << endl;
+  return 0;
 }
