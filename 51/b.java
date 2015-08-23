@@ -1,61 +1,56 @@
 import java.util.Scanner;
 import java.util.Collections;
+import java.util.List;
 import java.util.ArrayList;
 
 public class b {
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        StringBuilder input = new StringBuilder();
+  private static int MAGIC = 5000;
 
-        while (sc.hasNextLine()) {
-            String line = sc.nextLine();
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    StringBuilder input = new StringBuilder();
 
-            //if (line.equals("stop")) {
-            //    break;
-            //}
-
-            input.append(line);
-        }
-
-        sc.close();
-
-        ArrayList<Integer> answer = solve(input.toString());
-
-        Collections.sort(answer);
-
-        for (Integer number: answer) {
-            System.out.print(number + " ");
-        }
-
-        System.out.println("");
+    while (sc.hasNextLine()) {
+      input.append(sc.nextLine());
     }
 
-    private static ArrayList<Integer> solve(final String input) {
-        ArrayList<Integer> output = new ArrayList<>();
-        int[] tdElems = new int[5000];
-        int depth = -1;
-        String[] tokens = tokenize(input);
+    sc.close();
+    List<Integer> answer = solve(input.toString());
+    Collections.sort(answer);
 
-        for (String token: tokens) {
-            //System.out.println(token);
-            switch (token) {
-                case "td":
-                    tdElems[depth]++;
-                    break;
-                case "/table":
-                    output.add(tdElems[depth--]);
-                    break;
-                case "table":
-                    tdElems[++depth] = 0;
-                    break;
-            }
-        }
-
-        return output;
+    for (Integer number: answer) {
+      System.out.print(number + " ");
     }
 
-    private static String[] tokenize(final String input) {
-        return input.replaceAll("[\\<\\>]+", " ").split("\\s+");
+    System.out.println();
+  }
+
+  private static List<Integer> solve(String input) {
+    List<Integer> output = new ArrayList<>();
+    int[] tdElems = new int[MAGIC];
+    int depth = -1;
+    String[] tokens = tokenize(input);
+
+    for (String token: tokens) {
+      switch (token) {
+        case "td":
+          ++tdElems[depth];
+          break;
+
+        case "/table":
+          output.add(tdElems[depth--]);
+          break;
+
+        case "table":
+          tdElems[++depth] = 0;
+      }
     }
+
+    return output;
+  }
+
+  private static String[] tokenize(String input) {
+    return input.replaceAll("[\\<\\>]+", " ").split("\\s+");
+  }
 }

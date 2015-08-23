@@ -1,34 +1,31 @@
 #include <cstdio>
-#include <utility>
+#include <algorithm>
 
-using namespace std;
-
-const int N = (int) 3e3;
+const int N = 3000;
 int a[N];
 
-int main()
-{
-    int n;
-    scanf("%u", &n);
+int main() {
+  int n;
+  scanf("%d", &n);
 
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &a[i]);
+  for (int i = 0; i < n; ++i) {
+    scanf("%d", a + i);
+  }
+
+  printf("%d\n", n);
+
+  for (int i = 0; i < n; ++i) {
+    int k = i;
+
+    for (int j = i + 1; j < n; ++j) {
+      if (a[j] < a[k]) {
+        k = j;
+      }
     }
 
-    printf("%u\n", n);
+    std::swap(a[i], a[k]);
+    printf("%d %d\n", i, k);
+  }
 
-    for (int i = 0; i < n; i++) {
-        int k = i;
-
-        for (int j = i + 1; j < n; j++) {
-            if (a[j] < a[k]) {
-                k = j;
-            }
-        }
-
-        swap(a[i], a[k]);
-        printf("%u %u\n", i, k);
-    }
-
-    return 0;
+  return 0;
 }
