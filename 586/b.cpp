@@ -25,6 +25,9 @@ int main() {
     }
     left += b[n - i - 1];
     for (int j = 0; j < n; ++j) {
+      if (n - i - 1 == j) {
+        continue;
+      }
       right = 0;
       for (int k = 0; k < j; ++k) {
         right += up[k];
