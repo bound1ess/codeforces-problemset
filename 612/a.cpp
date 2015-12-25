@@ -20,6 +20,7 @@ int main() {
     puts("-1");
     return 0;
   }
+  printf("%d\n", x + y);
   for (int i = 0; i < x; ++i) {
     for (int j = 0; j < p; ++j) {
       putchar(s[i * p + j]);
